@@ -1,6 +1,6 @@
 import os
 import io
-
+import docx  
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from pypdf import PdfReader
@@ -183,3 +183,18 @@ def generate_compliant_feedback(job_description, candidate_resume):
         return response.choices[0].message.content
     except Exception as e:
         return f"Error: {e}"
+
+
+
+# ... (Existing imports and functions) ...
+
+def extract_text_from_docx(uploaded_file):
+    """Reads a Streamlit UploadedFile object and extracts text from DOCX."""
+    
+    # docx library needs a file path or file-like object; we use the file stream
+    document = docx.Document(uploaded_file)
+    text = ""
+    for paragraph in document.paragraphs:
+        text += paragraph.text + '\n'
+        
+    return text.strip()
