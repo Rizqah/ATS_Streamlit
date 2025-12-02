@@ -1,6 +1,6 @@
 import os
 import io
-import docx  
+
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from pypdf import PdfReader
@@ -198,3 +198,4 @@ def extract_text_from_docx(uploaded_file):
         text += paragraph.text + '\n'
         
     return text.strip()
+
